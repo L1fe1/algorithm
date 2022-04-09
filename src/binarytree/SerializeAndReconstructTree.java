@@ -84,25 +84,25 @@ public class SerializeAndReconstructTree {
 		return ans;
 	}
 
-	public static Node buildByLevelQueue(Queue<String> levelList) {
-		if (levelList == null || levelList.size() == 0) {
+	public static Node buildByLevelQueue(Queue<String> levelQueue) {
+		if (levelQueue == null || levelQueue.size() == 0) {
 			return null;
 		}
-		Node head = generateNode(levelList.poll());
-		Queue<Node> queue = new LinkedList<Node>();
+		Queue<Node> queue = new LinkedList<>();
+		Node head = generateNode(levelQueue.poll());
 		if (head != null) {
 			queue.add(head);
 		}
-		Node node = null;
+		Node cur;
 		while (!queue.isEmpty()) {
-			node = queue.poll();
-			node.left = generateNode(levelList.poll());
-			node.right = generateNode(levelList.poll());
-			if (node.left != null) {
-				queue.add(node.left);
+			cur = queue.poll();
+			cur.left = generateNode(levelQueue.poll());
+			cur.right = generateNode(levelQueue.poll());
+			if (cur.left != null) {
+				queue.add(cur.left);
 			}
-			if (node.right != null) {
-				queue.add(node.right);
+			if (cur.right != null) {
+				queue.add(cur.right);
 			}
 		}
 		return head;
@@ -112,7 +112,7 @@ public class SerializeAndReconstructTree {
 		if (val == null) {
 			return null;
 		}
-		return new Node(Integer.valueOf(val));
+		return new Node(Integer.parseInt(val));
 	}
 
 	// for test
