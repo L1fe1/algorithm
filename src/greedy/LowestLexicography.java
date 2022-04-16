@@ -45,6 +45,7 @@ public class LowestLexicography {
 	public static class MyComparator implements Comparator<String> {
 		@Override
 		public int compare(String o1, String o2) {
+			// 如果字符串 o1 连接 o2 比 o2 连接 o1 小，那么 o1 排前面；否则 o2 排前面
 			return (o1 + o2).compareTo(o2 + o1);
 		}
 	}
